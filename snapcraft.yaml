@@ -1,0 +1,20 @@
+---
+name: sitter-dbus-session-test
+version: '1'
+summary:  dbus session test
+description: dbus session test
+confinement: strict
+grade: stable
+base: core18
+
+apps:
+    sitter-dbus-session-test:
+        command: dbus-wrapper dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames
+        plugs:
+        - unity7
+        - desktop-legacy
+
+parts:
+    runtime:
+        plugin: dump
+        source: runtime

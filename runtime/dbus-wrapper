@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -ex
+
+export XDG_RUNTIME_DIR=$SNAP_USER_DATA/.local/var/run/$UID
+mkdir -p -m 0700 $XDG_RUNTIME_DIR
+
+# https://forum.snapcraft.io/t/how-to-use-dbus-run-session-on-ubuntu-core/7077
+DBUS_VERBOSE=1 dbus-run-session --config-file=$SNAP/session.conf "$@"
